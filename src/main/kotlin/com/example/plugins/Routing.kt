@@ -38,6 +38,15 @@ fun Application.configureRouting() {
                 call.respondText(printResult(Figure.BISHOP, cell))
             }
         }
+
+        get("/knight") {
+            val cell = call.parameters[CELL]
+            if (cell == null) {
+                call.respondText("Empty parameter")
+            } else {
+                call.respondText(printResult(Figure.KNIGHT, cell))
+            }
+        }
     }
 }
 
@@ -57,7 +66,7 @@ enum class Figure {
     KING,
     ROOK,
     BISHOP,
-
+    KNIGHT
 }
 
 val columnsToInt = mapOf(
@@ -105,6 +114,16 @@ fun checkMoves(figure: Figure, column: Int, row: Int): List<Pair<Int, Int>> {
                 possibleMoves.add(Pair(i - difference, i))
                 possibleMoves.add(Pair(i, sum - i))
             }
+        }
+        Figure.KNIGHT -> {
+            possibleMoves.add(Pair(column - 2, row + 1))
+            possibleMoves.add(Pair(column - 2, row - 1))
+            possibleMoves.add(Pair(column - 1, row + 2))
+            possibleMoves.add(Pair(column - 1, row - 2))
+            possibleMoves.add(Pair(column + 1, row + 2))
+            possibleMoves.add(Pair(column + 1, row - 2))
+            possibleMoves.add(Pair(column + 2, row + 1))
+            possibleMoves.add(Pair(column + 2, row - 1))
         }
     }
     possibleMoves.removeIf {
