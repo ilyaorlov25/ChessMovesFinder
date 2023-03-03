@@ -5,6 +5,7 @@ import io.ktor.server.response.*
 import io.ktor.server.application.*
 
 const val CELL = "cell"
+val pattern = Regex("""[a-h][1-8]""")
 
 fun Application.configureRouting() {
     routing {
@@ -16,6 +17,8 @@ fun Application.configureRouting() {
             val cell = call.parameters[CELL]
             if (cell == null) {
                 call.respondText("Empty parameter")
+            } else if (!cell.matches(pattern)) {
+                call.respondText("Incorrect cell")
             } else {
                 call.respondText(printResult(Figure.KING, cell))
             }
@@ -25,6 +28,8 @@ fun Application.configureRouting() {
             val cell = call.parameters[CELL]
             if (cell == null) {
                 call.respondText("Empty parameter")
+            } else if (!cell.matches(pattern)) {
+                call.respondText("Incorrect cell")
             } else {
                 call.respondText(printResult(Figure.ROOK, cell))
             }
@@ -34,6 +39,8 @@ fun Application.configureRouting() {
             val cell = call.parameters[CELL]
             if (cell == null) {
                 call.respondText("Empty parameter")
+            } else if (!cell.matches(pattern)) {
+                call.respondText("Incorrect cell")
             } else {
                 call.respondText(printResult(Figure.BISHOP, cell))
             }
@@ -43,6 +50,8 @@ fun Application.configureRouting() {
             val cell = call.parameters[CELL]
             if (cell == null) {
                 call.respondText("Empty parameter")
+            } else if (!cell.matches(pattern)) {
+                call.respondText("Incorrect cell")
             } else {
                 call.respondText(printResult(Figure.KNIGHT, cell))
             }
