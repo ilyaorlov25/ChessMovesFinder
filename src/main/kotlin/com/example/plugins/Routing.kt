@@ -20,6 +20,15 @@ fun Application.configureRouting() {
                 call.respondText(printResult(Figure.KING, cell))
             }
         }
+
+        get("/rook") {
+            val cell = call.parameters[CELL]
+            if (cell == null) {
+                call.respondText("Empty parameter")
+            } else {
+                call.respondText(printResult(Figure.ROOK, cell))
+            }
+        }
     }
 }
 
@@ -37,6 +46,7 @@ fun printResult(figure: Figure, cell: String): String {
 
 enum class Figure {
     KING,
+    ROOK,
 
 }
 
@@ -70,6 +80,12 @@ fun checkMoves(figure: Figure, column: Int, row: Int): List<Pair<Int, Int>> {
                 for (j in row - 1..row + 1) {
                     possibleMoves.add(Pair(i, j))
                 }
+            }
+        }
+        Figure.ROOK -> {
+            for (i in 1..8) {
+                possibleMoves.add(Pair(i, row))
+                possibleMoves.add(Pair(column, i))
             }
         }
     }
