@@ -29,6 +29,15 @@ fun Application.configureRouting() {
                 call.respondText(printResult(Figure.ROOK, cell))
             }
         }
+
+        get("/bishop") {
+            val cell = call.parameters[CELL]
+            if (cell == null) {
+                call.respondText("Empty parameter")
+            } else {
+                call.respondText(printResult(Figure.BISHOP, cell))
+            }
+        }
     }
 }
 
@@ -47,6 +56,7 @@ fun printResult(figure: Figure, cell: String): String {
 enum class Figure {
     KING,
     ROOK,
+    BISHOP,
 
 }
 
@@ -86,6 +96,14 @@ fun checkMoves(figure: Figure, column: Int, row: Int): List<Pair<Int, Int>> {
             for (i in 1..8) {
                 possibleMoves.add(Pair(i, row))
                 possibleMoves.add(Pair(column, i))
+            }
+        }
+        Figure.BISHOP -> {
+            val difference = row - column
+            val sum = row + column
+            for (i in 1..8) {
+                possibleMoves.add(Pair(i - difference, i))
+                possibleMoves.add(Pair(i, sum - i))
             }
         }
     }
