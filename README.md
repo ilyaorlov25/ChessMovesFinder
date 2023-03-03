@@ -37,3 +37,5 @@ $ docker run -p 8080:8080 ChessMovesFinder
 ```
 ## Lisense
 [Apache](./LICENSE)
+## Author
+Ilya Orlov, group 3530901/90203
