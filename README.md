@@ -1,3 +1,9 @@
+`main`:
+[![Tests](https://github.com/ilyaorlov25/ChessMovesFinder/actions/workflows/gradle-tests.yml/badge.svg?branch=main)](https://github.com/ilyaorlov25/ChessMovesFinder/actions/workflows/gradle-tests.yml)
+
+`develop`:
+[![Tests](https://github.com/ilyaorlov25/ChessMovesFinder/actions/workflows/gradle-tests.yml/badge.svg?branch=develop)](https://github.com/ilyaorlov25/ChessMovesFinder/actions/workflows/gradle-tests.yml)
+
 # Chess moves finder
 This service takes a figure type (king, rook, bishop, knight) and cell (a1-h8) and then returns a list of cells that the figure can move to from the selected one.
 
